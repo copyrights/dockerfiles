@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 
-ARG  snapcast_version=0.22.0
+ARG  snapcast_version=0.23.0
 ARG TARGETARCH
 
 RUN  apt-get update \
@@ -14,6 +14,5 @@ RUN  dpkg -i snapserver_${snapcast_version}-1_$(echo $TARGETARCH | sed 's/arm/ar
   && rm -rf /var/lib/apt/lists/*
 RUN /usr/bin/snapserver -v
 COPY snapserver.conf /etc/snapserver.conf
-COPY index.html /www/index.html
 EXPOSE 1704 1705 1780
 ENTRYPOINT ["/bin/bash","-c","/usr/bin/snapserver"]
